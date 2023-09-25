@@ -1,7 +1,7 @@
 <?php
 require_once "../private/autoloader.php";
 require_once "../static/database.php";
-//require_once "../static/settings.php";
+require_once "../static/settings.php";
 
 $filename = substr($_SERVER['REDIRECT_URL'], 1);
 if ($filename == '') {

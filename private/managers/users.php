@@ -18,7 +18,7 @@ class users
             if($user !== ''){
                 if(password_verify($password, $user->password_hash)){
                     $_SESSION['user'] = $user->id;
-                    echo'your loged in';
+
                 } else {
                     return 'Wachtwoord of E-mail onjuist';
                 }

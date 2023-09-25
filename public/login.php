@@ -41,7 +41,7 @@ if($_POST){
                 <?php
                 if($alert !== "")
                 {
-                    echo '<div class="alert alert-light" role="alert">';
+                    echo '<div class="alert alert-danger" role="alert">';
                     echo $alert;
                     echo '</div>';
                 }?>
@@ -49,11 +49,11 @@ if($_POST){
             <form method="post">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Wachtwoord</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>

@@ -1,13 +1,4 @@
 <?php
-require_once '../static/database.php';
-require_once '../private/autoloader.php';
-
-$alert = "";
-if($_POST){
-    $alert = users::login($_POST['email'], $_POST['password']);
-
-}
-
 ?>
 
 <!doctype html>

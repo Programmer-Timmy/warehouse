@@ -11,6 +11,10 @@ class category
     }
 
     public static function getAll(){
+        global $conn;
 
+        $stmt = $conn->prepare('SELECT * FROM category');
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }

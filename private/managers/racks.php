@@ -11,6 +11,10 @@ class racks
     }
 
     public static function getAll(){
+        global $conn;
 
+        $stmt = $conn->prepare('SELECT * FROM racks');
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }

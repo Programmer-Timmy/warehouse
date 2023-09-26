@@ -10,17 +10,17 @@
                     <a class="nav-link" aria-current="page" href="home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Week overzicht</a>
+                    <a class="nav-link" href="weekoverview">Week overzicht</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Gebruikers</a>
+                    <a class="nav-link" href="users">Gebruikers</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item" >
                     <a class="nav-link" style="font-size: 30px; float:left;" href="addProduct"><i class="fa-solid fa-plus fa-lg"></i></a>
-                    <a class="nav-link" style="font-size: 30px; float: left" href="#"><i class="fa-solid fa-qrcode"></i></i></a>
-                    <a class="nav-link" style="font-size: 30px; float: left" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i></i></i></a>
+                    <a class="nav-link" style="font-size: 30px; float: left" href="scanproduct"><i class="fa-solid fa-qrcode"></i></i></a>
+                    <a class="nav-link" style="font-size: 30px; float: left" href="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></i></i></a>
                 </li>
             </ul>
         </div>

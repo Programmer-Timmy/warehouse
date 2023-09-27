@@ -17,7 +17,13 @@ class products
 
     public static function get($id)
     {
+        global $conn;
+        $stmt = $conn->prepare("SELECT products.id, products.name, ammount, json_img_url, qr_url, category.name as category, racks.number as rack FROM products join category on products.category_id = category.id join racks on products.racks_id = racks.id WHERE products.id = ?");
+        $stmt->bindValue(1, $id);
 
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
     public static function edit($id, $name, $amount, $json_img_url, $category_id, $racks_id)

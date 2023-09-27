@@ -9,7 +9,7 @@
     <title>Warehouse - Product scannen</title>
 </head>
 <body>
-<?php require_once "../private/includes/navbar.php"; ?>
+<?php require_once "../private/includes/nav.php"; ?>
 
 </body>
 </html>

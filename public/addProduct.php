@@ -18,7 +18,7 @@ if($_POST){
     <title>Warehouse - Product toevoegen</title>
 </head>
 <body>
-<?php require_once 'nav.php'; ?>
+<?php require_once '../private/includes/nav.php'; ?>
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">

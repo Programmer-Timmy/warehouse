@@ -14,7 +14,7 @@ $products = products::getAll();
     <title>Warehouse - Home</title>
 </head>
 <body>
-<?php require_once 'nav.php'; ?>
+<?php require_once '../private/includes/nav.php'; ?>
 <div class="container">
     <div class="row">
         <?php

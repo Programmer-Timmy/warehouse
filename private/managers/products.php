@@ -26,9 +26,23 @@ class products
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public static function edit($id, $name, $amount, $json_img_url, $category_id, $racks_id)
+    public static function edit($id, $name, $amount, $oldammount, $category_id, $racks_id)
     {
+        global $conn;
+        $stmt = $conn->prepare("UPDATE products SET name =? , ammount =? , category_id =? , racks_id=? WHERE id =?");
+        $stmt->bindValue(1, $name);
+        $stmt->bindValue(2, $amount);
+        $stmt->bindValue(3, $category_id);
+        $stmt->bindValue(4, $racks_id);
+        $stmt->bindValue(5, $id);
+        $stmt->execute();
 
+        $total = $amount - $oldammount;
+
+        if ($total !== 0) {
+            history::add($total, $amount, $id);
+        }
+        header("location:productpage?id=$id");
     }
 
     public static function add($name, $amount, $category_id, $racks_id, $files)

@@ -1,6 +1,7 @@
 <?php
 $product = products::get($_GET['id']);
 $img = json_decode($product->json_img_url);
+$histories = history::getByProduct($_GET['id'])
 ?>
 
 <!DOCTYPE html>
@@ -81,6 +82,32 @@ $img = json_decode($product->json_img_url);
             </div>
         </div>
     </div>
+    <h2>Overzicht</h2>
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <th>Aantal</th>
+            <th>Totaal</th>
+            <th>Datum</th>
+        </tr>
+        </thead>
+
+        <?php
+        foreach ($histories as $histoy) {
+            echo "
+            <tbody>
+            <tr>
+                <td>$histoy->ammount</td>
+                <td>$histoy->total</td>
+                <td>$histoy->date</td>
+                </tr>
+            </tbody>
+            ";
+        }
+        ?>
+
+
+    </table>
 </div>
 <script>
     function changeImage(imageUrl) {

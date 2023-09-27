@@ -90,5 +90,6 @@ $img = json_decode($product->json_img_url);
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
 
+<?php require_once "footer.php"; ?>
 </body>
 </html>

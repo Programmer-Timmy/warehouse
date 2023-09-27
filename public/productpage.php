@@ -117,5 +117,6 @@ $histories = history::getByProduct($_GET['id'])
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
 
+<?php require_once "footer.php"; ?>
 </body>
 </html>

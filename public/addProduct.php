@@ -3,9 +3,7 @@ $racks = racks::getAll();
 $categories = category::getAll();
 
 if($_POST){
-    print_r($_POST);
-    echo '<br>';
-    print_r($_FILES['images']);
+    products::add($_POST['name'], $_POST['ammount'], $_POST['category_id'], $_POST['racks_id'], $_FILES['images']);
 }
 ?>
 

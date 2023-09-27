@@ -11,5 +11,8 @@
 <body>
 <?php require_once "../private/includes/nav.php"; ?>
 
+
+<?php require_once "../private/includes/footer.php"; ?>
+
 </body>
 </html>

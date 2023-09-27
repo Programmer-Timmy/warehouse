@@ -1,4 +1,7 @@
 <?php
+if (isset($_GET['delete'])) {
+    products::delete($_GET['delete']);
+}
 $product = products::get($_GET['id']);
 $img = json_decode($product->json_img_url);
 $histories = history::getByProduct($_GET['id'])
@@ -50,6 +53,8 @@ $histories = history::getByProduct($_GET['id'])
         </div>
         <div class="col-md-6 text-end">
             <a href="editProduct?id=<?php echo $product->id; ?>" class="btn btn-primary">Bewerken</a>
+            <a href="productpage?delete=<?php echo $product->id; ?>" class="btn btn-danger"
+               onclick="return confirm('Weet je het zeker?');">Verwijderen</a>
         </div>
     </div>
     <div class="row">
@@ -117,6 +122,6 @@ $histories = history::getByProduct($_GET['id'])
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<?php require_once "footer.php"; ?>
+<?php require_once "../private/includes/footer.php"; ?>
 </body>
 </html>

@@ -44,12 +44,24 @@ class history
         $date = date('Y/m/d H:i:s');
         $week = date('W');
 
+        if ($ammount > 0) {
+            $ammount = '+' . $ammount;
+        }
+
         $stmt = $conn->prepare("INSERT INTO history (ammount, total, date, week, products_id) values (?,?,?,?,?)");
         $stmt->bindValue(1, $ammount);
         $stmt->bindValue(2, $total);
         $stmt->bindValue(3, $date);
         $stmt->bindValue(4, $week);
         $stmt->bindValue(5, $products_id);
+        $stmt->execute();
+    }
+
+    public static function delete($id)
+    {
+        global $conn;
+        $stmt = $conn->prepare("DELETE FROM history WHERE products_id= ?");
+        $stmt->bindValue(1, $id);
         $stmt->execute();
     }
 

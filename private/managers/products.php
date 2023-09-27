@@ -40,7 +40,9 @@ class products
         $total = $amount - $oldammount;
 
         if ($total !== 0) {
+
             history::add($total, $amount, $id);
+
         }
         header("location:productpage?id=$id");
     }
@@ -58,6 +60,10 @@ class products
         $stmt->bindValue(5, $category_id);
         $stmt->bindValue(6, $racks_id);
         $stmt->execute();
+
+        history::add($amount, $amount, $conn->lastInsertId());
+
+        header('location:home');
     }
 
     public static function changeAmount($id, $amount, $direction)
@@ -65,9 +71,15 @@ class products
 
     }
 
-    public static function delete()
+    public static function delete($id)
     {
+        history::delete($id);
+        global $conn;
+        $stmt = $conn->prepare("DELETE FROM products WHERE id= ?");
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
 
+        header('location:home');
     }
 
     private static function imgUpload($files)

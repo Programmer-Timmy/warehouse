@@ -26,15 +26,15 @@ if($_POST){
 <form method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="name" class="form-label">Naam</label>
-        <input type="text" class="form-control" name="name" id="name">
+        <input type="text" class="form-control" name="name" id="name" required>
     </div>
     <div class="mb-3">
         <label for="ammount" class="form-label">Aantal</label>
-        <input type="number" class="form-control" name='ammount' id="ammount">
+        <input type="number" class="form-control" name='ammount' id="ammount" required>
     </div>
     <div class="mb-3">
         <label for="category_id" class="form-label">Categorie</label>
-        <select class="form-select" name="category_id">
+        <select class="form-select" name="category_id" required>
             <?php
             foreach ($categories as $category){
                 echo"<option value='$category->id'>$category->name</option>";
@@ -45,7 +45,7 @@ if($_POST){
     </div>
     <div class="mb-3">
         <label for="racks_id" class="form-label">Stelling</label>
-        <select class="form-select" name="racks_id">
+        <select class="form-select" name="racks_id" required>
             <?php
             foreach ($racks as $rack){
                 echo"<option value='$rack->id'>$rack->number</option>";
@@ -55,7 +55,7 @@ if($_POST){
     </div>
     <div class="mb-3">
         <label for="formFile" class="form-label">afbeeldingen</label>
-        <input type="file" class="form-control" name="images[]"  accept="image/*" id="formFile" multiple>
+        <input type="file" class="form-control" name="images[]" accept="image/*" id="formFile" multiple required>
     </div>
     <button type="submit" class="btn btn-primary">Toevoegen</button>
 </form>

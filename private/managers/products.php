@@ -71,13 +71,17 @@ class products
 
     }
 
-    public static function delete($id)
+    public static function delete($id, $images)
     {
         history::delete($id);
         global $conn;
         $stmt = $conn->prepare("DELETE FROM products WHERE id= ?");
         $stmt->bindValue(1, $id);
         $stmt->execute();
+
+        foreach ($images as $image) {
+            unlink('../public/' . $image);
+        }
 
         header('location:home');
     }

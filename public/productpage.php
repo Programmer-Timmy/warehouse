@@ -1,9 +1,9 @@
 <?php
-if (isset($_GET['delete'])) {
-    products::delete($_GET['delete']);
-}
 $product = products::get($_GET['id']);
 $img = json_decode($product->json_img_url);
+if (isset($_GET['delete'])) {
+    products::delete($_GET['delete'], $img);
+}
 $histories = history::getByProduct($_GET['id'])
 ?>
 
@@ -53,7 +53,8 @@ $histories = history::getByProduct($_GET['id'])
         </div>
         <div class="col-md-6 text-end">
             <a href="editProduct?id=<?php echo $product->id; ?>" class="btn btn-primary">Bewerken</a>
-            <a href="productpage?delete=<?php echo $product->id; ?>" class="btn btn-danger"
+            <a href="productpage?delete=<?php echo $product->id; ?>&id=<?php echo $product->id; ?>"
+               class="btn btn-danger"
                onclick="return confirm('Weet je het zeker?');">Verwijderen</a>
         </div>
     </div>

@@ -15,6 +15,7 @@ $histories = history::getByProduct($_GET['id'])
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/65416f0144.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
         /* Custom CSS for styling */
         .product-image {
@@ -84,7 +85,10 @@ $histories = history::getByProduct($_GET['id'])
                 <p><strong>Aantal:</strong> <?php echo $product->ammount; ?></p>
                 <p><strong>Categorie:</strong> <?php echo $product->category; ?></p>
                 <p><strong>Stelling:</strong> <?php echo $product->rack; ?></p>
-                <img src="https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=http://warehouse/changeAmmount?qrid=<?php echo $product->qr_url; ?>">
+                <img id="qr"
+                     src="https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=http://warehouse/changeAmmount?qrid=<?php echo $product->qr_url; ?>">
+                <!--                <a onclick="printqr()" class="btn btn-primary" >Download QR</a>-->
+
             </div>
         </div>
     </div>
@@ -115,11 +119,14 @@ $histories = history::getByProduct($_GET['id'])
 
     </table>
 </div>
+
 <script>
     function changeImage(imageUrl) {
         console.log(imageUrl);
         document.getElementById('main-image').style.backgroundImage = `url(${imageUrl})`;
     }
+
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
 

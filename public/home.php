@@ -15,7 +15,7 @@ $products = products::getAll();
 </head>
 <body>
 <?php require_once '../private/includes/nav.php'; ?>
-<div class="container">
+<div class="container" style="padding-bottom: 100px">
     <div class="row">
         <?php
         foreach ($products as $product) {

@@ -114,4 +114,15 @@ class products
         return json_encode($locations);
 
     }
+
+    public static function getByQR($id)
+    {
+        global $conn;
+        $stmt = $conn->prepare("SELECT products.id, products.name, ammount, json_img_url, qr_url, category.name as category, racks.number as rack FROM products join category on products.category_id = category.id join racks on products.racks_id = racks.id WHERE products.QR_url = ?");
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 }

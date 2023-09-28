@@ -6,13 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/65416f0144.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <title>Warehouse - Product scannen</title>
 </head>
 <body>
 <?php require_once "../private/includes/nav.php"; ?>
-
+<div class="container" style="padding-bottom: 100px; width: 900px">
+    <div id="reader" style="width: 900px"></div>
+</div>
 
 <?php require_once "../private/includes/footer.php"; ?>
 
+<script type="text/javascript">
+    function onScanSuccess(decodedText, decodedResult) {
+        // Handle on success condition with the decoded text or result.
+        console.log(`Scan result: ${decodedText}`, decodedResult);
+        window.location.href = decodedText;
+
+    }
+
+    var html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", {fps: 60, qrbox: 250});
+
+    html5QrcodeScanner.render(onScanSuccess);
+</script>
 </body>
 </html>

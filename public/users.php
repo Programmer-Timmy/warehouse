@@ -1,3 +1,7 @@
+<?php
+$users = users::getAll();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +15,41 @@
 </head>
 <body>
 <?php require_once "../private/includes/nav.php"; ?>
+<div class="container">
+    <h1 class="pt-3">Gebruikers</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="table-dark">
+            <tr>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($users as $user) {
+                echo "
+            <tr>
+            <td>$user->email</td>
+            <td>$user->firstname</td>
+            <td>$user->lastname</td>
+            <td>
+                <a href=\"#\" class=\"btn btn-primary\">...</a>
+                <a href=\"?delete=$user->id\" onclick='return confirm(\"weet je het zeker?\")' class=\"btn btn-danger\">X</a>
+            </td>
+            </tr>
+            ";
+            }
+
+            ?>
+
+
+            </tbody>
+        </table>
+    </div>
+
 
 
 <?php require_once "../private/includes/footer.php"; ?>

@@ -1,8 +1,8 @@
 <?php
 $product = products::get($_GET['id']);
-$img = json_decode($product->json_img_url);
+$imgs = json_decode($product->json_img_url);
 if (isset($_GET['delete'])) {
-    products::delete($_GET['delete'], $img);
+    products::delete($_GET['delete'], $imgs);
 }
 $histories = history::getByProduct($_GET['id'])
 ?>
@@ -20,7 +20,7 @@ $histories = history::getByProduct($_GET['id'])
     <style>
         /* Custom CSS for styling */
         .product-image {
-            background-image: url('<?php echo $img[0]; ?>'); /* Replace with your product image URL */
+            background-image: url('<?php echo $imgs[0]; ?>'); /* Replace with your product image URL */
             background-size: cover;
             background-position: center;
             height: 400px;
@@ -49,11 +49,11 @@ $histories = history::getByProduct($_GET['id'])
 <?php require_once "../private/includes/nav.php"; ?>
 
 <div class="container mt-3" style="padding-bottom: 100px">
-    <div class="row">
-        <div class="col-md-6">
+    <div class="d-flex">
+        <div class="">
             <h1><?php echo $product->name; ?></h1>
         </div>
-        <div class="col-md-6 text-end">
+        <div class="ms-auto">
             <a href="editProduct?id=<?php echo $product->id; ?>" class="btn btn-primary">Bewerken</a>
             <a href="productpage?delete=<?php echo $product->id; ?>&id=<?php echo $product->id; ?>"
                class="btn btn-danger"
@@ -63,12 +63,12 @@ $histories = history::getByProduct($_GET['id'])
     <div class="row">
         <div class="col-md-6">
             <div class="product-image" id="main-image"></div>
-            <div class="row mt-2">
-                <?php foreach ($img as $img) {
+            <div class="mt-2 d-flex flex-wrap">
+                <?php foreach ($imgs as $img) {
                     $img = str_replace(' ', '%20', $img);
                     echo "
-                    <div class=\"col-2\">
-                        <div class=\"thumbnail-image\" style=\"background-image: url('$img');\"  onclick=\"changeImage('$img')\"></div>
+                    <div class=\"px-1\" '>
+                        <div class=\"thumbnail-image\" style=\"background-image: url('$img'); width: 100px; height: 100px\"  onclick=\"changeImage('$img')\"></div>
                     </div>
                     ";
                 }
@@ -88,8 +88,6 @@ $histories = history::getByProduct($_GET['id'])
                 <p><strong>Stelling:</strong> <?php echo $product->rack; ?></p>
                 <img id="qr"
                      src="https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=http://warehouse/changeAmmount?qrid=<?php echo $product->qr_url; ?>">
-                <!--                <a onclick="printqr()" class="btn btn-primary" >Download QR</a>-->
-
             </div>
         </div>
     </div>

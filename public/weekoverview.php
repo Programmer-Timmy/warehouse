@@ -53,7 +53,7 @@ $histories = history::getAllByWeek($_GET['week']);
             </form>
         </div>
     </div>
-
+    <div class="table-responsive">
     <table class="table">
         <thead class="table-dark">
         <tr>
@@ -86,6 +86,7 @@ $histories = history::getAllByWeek($_GET['week']);
 
 
     </table>
+    </div>
 </div>
 
 

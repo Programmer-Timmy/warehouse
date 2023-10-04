@@ -29,7 +29,12 @@ class users
     }
 
     public static function getAll(){
+        global $conn;
 
+        $stmt = $conn->prepare("SELECT id, email, firstname, lastname FROM users");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     public static function get($id){

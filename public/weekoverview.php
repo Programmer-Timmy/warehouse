@@ -19,6 +19,20 @@ $histories = history::getAllByWeek($_GET['week']);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/65416f0144.js" crossorigin="anonymous"></script>
     <title>Warehouse - Week overzicht</title>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <?php require_once "../private/includes/nav.php"; ?>
@@ -32,7 +46,7 @@ $histories = history::getAllByWeek($_GET['week']);
             <form method="get" id="myPost" class="d-flex flex-row " style="width: 200px; margin-left: auto ">
                 <button type="button" onclick="amountUpC()" class="btn btn-primary"><i class="fa-solid fa-angle-up"></i>
                 </button>
-                <input type="number" class="form-control" id="week" name="week" min="0"
+                <input type="number" onchange="submit('week')" class="form-control" id="week" name="week" min="0"
                        value="<?php echo $_GET['week']; ?>" step="1">
                 <button type="button" onclick="amountDownC()" class="btn btn-primary"><i
                             class="fa-solid fa-angle-down"></i></button>
@@ -43,6 +57,7 @@ $histories = history::getAllByWeek($_GET['week']);
     <table class="table">
         <thead class="table-dark">
         <tr>
+            <th>Naam</th>
             <th>Aantal</th>
             <th>Totaal</th>
             <th>Datum</th>
@@ -56,6 +71,7 @@ $histories = history::getAllByWeek($_GET['week']);
             echo "
             <tbody>
             <tr>
+                <td>$histoy->name</td>
                 <td>$histoy->ammount</td>
                 <td>$histoy->total</td>
                 <td>$histoy->date</td>
@@ -75,5 +91,8 @@ $histories = history::getAllByWeek($_GET['week']);
 
 <?php require_once "../private/includes/footer.php"; ?>
 <script src="src/Value.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 </html>

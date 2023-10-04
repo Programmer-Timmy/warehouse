@@ -40,3 +40,8 @@ function amountDownC() {
     document.getElementById("week").value = value;
     document.getElementById("myPost").submit();
 }
+
+function submit(id) {
+    document.getElementById(id).submit();
+
+}

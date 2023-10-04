@@ -5,13 +5,20 @@ class products
     /**
      * @return array|false
      */
-    public static function getAll()
+    public static function getAll($category_id = null)
     {
         global $conn;
-        $stmt = $conn->prepare("SELECT products.id, products.name, ammount, json_img_url, qr_url, category.name as category, racks.number as rack FROM products join category on products.category_id = category.id join racks on products.racks_id = racks.id");
 
-        $stmt->execute();
+        if ($category_id == null) {
+            $stmt = $conn->prepare("SELECT products.id, products.name, ammount, json_img_url, qr_url, category.name as category, racks.number as rack FROM products join category on products.category_id = category.id join racks on products.racks_id = racks.id");
+            $stmt->execute();
 
+        } else {
+            $stmt = $conn->prepare("SELECT products.id, products.name, ammount, json_img_url, qr_url, category.name as category, racks.number as rack FROM products join category on products.category_id = category.id join racks on products.racks_id = racks.id where category_id =?");
+            $stmt->bindValue(1, $category_id);
+            $stmt->execute();
+
+        }
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 

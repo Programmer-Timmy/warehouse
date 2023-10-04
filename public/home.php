@@ -1,5 +1,11 @@
 <?php
-$products = products::getAll();
+if (isset($_GET['category'])) {
+    $products = products::getAll($_GET['category']);
+} else {
+    $products = products::getAll();
+}
+
+$categories = category::getAll();
 ?>
 
 <!doctype html>
@@ -16,6 +22,23 @@ $products = products::getAll();
 <body>
 <?php require_once '../private/includes/nav.php'; ?>
 <div class="container" style="padding-bottom: 100px">
+    <div class="col-md-6 text-end pt-3" style="margin-left: auto">
+        <form method="get" id="category" style="width: 200px; margin-left: auto">
+            <select onchange="submit('category')" class="form-select" name="category"
+                    aria-label="Default select example">
+                <option value="">Kies categorie</option>
+                <?php
+                foreach ($categories as $category) {
+                    $selected = "";
+                    if ($category->id == $_GET['category']) {
+                        $selected = 'selected';
+                    }
+                    echo "<option $selected value=\"$category->id\">$category->name</option>";
+                }
+                ?>
+            </select>
+        </form>
+    </div>
     <div class="row">
         <?php
         foreach ($products as $product) {
@@ -42,7 +65,7 @@ $products = products::getAll();
     </div>
 </div>
 <?php require_once "../private/includes/footer.php"; ?>
-
+<script src="src/Value.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>

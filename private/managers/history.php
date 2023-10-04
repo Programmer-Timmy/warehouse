@@ -9,7 +9,7 @@ class history
     public static function getAllByWeek($week){
         global $conn;
 
-        $stmt = $conn->prepare("SELECT ammount, total, date, products.name FROM history JOIN products ON history.products_id = products.id where week = ");
+        $stmt = $conn->prepare("SELECT history.ammount, total, date, products.name, firstname, lastname, week FROM history JOIN products ON history.products_id = products.id JOIN users on history.users_id = users.id where week = ?");
         $stmt->bindValue(1, $week);
         $stmt->execute();
 
@@ -24,7 +24,7 @@ class history
     public static function getByProduct($product_id){
         global $conn;
 
-        $stmt = $conn->prepare("SELECT history.ammount, total, date, products.name FROM history JOIN products ON history.products_id = products.id where products.id = ?");
+        $stmt = $conn->prepare("SELECT history.ammount, total, date, products.name, firstname, lastname FROM history JOIN products ON history.products_id = products.id JOIN users on history.users_id = users.id  where products.id = ?");
         $stmt->bindValue(1, $product_id);
         $stmt->execute();
 
@@ -48,12 +48,13 @@ class history
             $ammount = '+' . $ammount;
         }
 
-        $stmt = $conn->prepare("INSERT INTO history (ammount, total, date, week, products_id) values (?,?,?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO history (ammount, total, date, week, products_id, users_id) values (?,?,?,?,?,?)");
         $stmt->bindValue(1, $ammount);
         $stmt->bindValue(2, $total);
         $stmt->bindValue(3, $date);
         $stmt->bindValue(4, $week);
         $stmt->bindValue(5, $products_id);
+        $stmt->bindValue(6, $_SESSION['user']);
         $stmt->execute();
     }
 

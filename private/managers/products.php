@@ -66,8 +66,19 @@ class products
         header('location:home');
     }
 
-    public static function changeAmount($id, $amount, $direction)
+    public static function changeAmount($id, $amount, $oldAmount)
     {
+        $total = $oldAmount - $amount;
+
+        global $conn;
+        $stmt = $conn->prepare("UPDATE products SET ammount =? WHERE id =?");
+        $stmt->bindValue(1, $total);
+        $stmt->bindValue(2, $id);
+        $stmt->execute();
+
+        history::add('-' . $amount, $total, $id);
+
+        header('location:scanproduct');
 
     }
 
@@ -118,7 +129,7 @@ class products
     public static function getByQR($id)
     {
         global $conn;
-        $stmt = $conn->prepare("SELECT products.id, products.name, ammount, json_img_url, qr_url, category.name as category, racks.number as rack FROM products join category on products.category_id = category.id join racks on products.racks_id = racks.id WHERE products.QR_url = ?");
+        $stmt = $conn->prepare("SELECT products.id, products.name, ammount, qr_url, category.name as category, racks.number as rack FROM products join category on products.category_id = category.id join racks on products.racks_id = racks.id WHERE products.QR_url = ?");
         $stmt->bindValue(1, $id);
 
         $stmt->execute();

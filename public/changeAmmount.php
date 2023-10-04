@@ -1,7 +1,17 @@
 <?php
 $product = products::getByQR($_GET['qrid']);
-$img = json_decode($product->json_img_url);
 
+
+if ($_POST) {
+    if ($product->ammount - $_POST['amount'] < 0) {
+        echo '<script>alert("Je totaal is minder dan 0!")</script>';
+        return;
+    } else {
+        products::changeAmount($product->id, $_POST['amount'], $product->ammount);
+    }
+
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,63 +24,43 @@ $img = json_decode($product->json_img_url);
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/65416f0144.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <title>Warehouse - Product</title>
     <style>
-        /* Custom CSS for styling */
-        .product-image {
-            background-image: url('<?php echo $img[0]; ?>'); /* Replace with your product image URL */
-            background-size: cover;
-            background-position: center;
-            height: 500px;
-            border: 1px solid #ddd;
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
 
-        .thumbnail-image {
-            background-size: cover;
-            background-position: center;
-            height: 80px;
-            border: 1px solid #ddd;
-            cursor: pointer;
-        }
-
-        .thumbnail-image:hover {
-            border: 1px solid #007bff;
-        }
-
-        .product-details {
-            padding: 20px;
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+            text-align: center;
         }
     </style>
-    <title>Warehouse - Product</title>
 </head>
 <body>
 <?php require_once "../private/includes/nav.php"; ?>
 
-<div class="container mt-3 ">
-
-    <div class="col-md-6">
+<div class="container mt-3 text-center">
         <h1><?php echo $product->name; ?></h1>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="product-image" id="main-image"></div>
-            <div class="col-md-6">
-                <div class="product-details">
-                    <form method="post">
-                        <input type="number" min="0">
-                    </form>
-                </div>
+    <form method="post">
+        <div class="mb-3">
+            <label for="amount" class="form-label">Aantal:</label>
+            <div class="d-flex flex-row" style="width: 200px; margin: auto">
+                <button type="button" onclick="amountUp()" class="btn btn-primary"><i class="fa-solid fa-angle-up"></i>
+                </button>
+                <input type="number" class="form-control" id="amount" name="amount" min="0" value="0" step="1">
+                <button type="button" onclick="amountDown()" class="btn btn-primary"><i
+                            class="fa-solid fa-angle-down"></i></button>
             </div>
         </div>
-    </div>
 
-    <script>
-        function changeImage(imageUrl) {
-            console.log(imageUrl);
-            document.getElementById('main-image').style.backgroundImage = `url(${imageUrl})`;
-        }
-
-
-    </script>
+        <input class="btn btn-primary" type="submit" value="Doorgaan">
+    </form>
+    <script src="src/Value.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <?php require_once "../private/includes/footer.php"; ?>

@@ -13,7 +13,8 @@ $histories = history::getByProduct($_GET['id'])
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/65416f0144.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
@@ -47,7 +48,7 @@ $histories = history::getByProduct($_GET['id'])
 <body>
 <?php require_once "../private/includes/nav.php"; ?>
 
-<div class="container mt-3">
+<div class="container mt-3" style="padding-bottom: 100px">
     <div class="row">
         <div class="col-md-6">
             <h1><?php echo $product->name; ?></h1>
@@ -92,6 +93,7 @@ $histories = history::getByProduct($_GET['id'])
             </div>
         </div>
     </div>
+    <br>
     <h2>Overzicht</h2>
     <table class="table">
         <thead class="table-dark">
@@ -99,6 +101,7 @@ $histories = history::getByProduct($_GET['id'])
             <th>Aantal</th>
             <th>Totaal</th>
             <th>Datum</th>
+            <th>Gebruiker</th>
         </tr>
         </thead>
 
@@ -110,6 +113,8 @@ $histories = history::getByProduct($_GET['id'])
                 <td>$histoy->ammount</td>
                 <td>$histoy->total</td>
                 <td>$histoy->date</td>
+                <td>$histoy->firstname $histoy->lastname</td>
+
                 </tr>
             </tbody>
             ";

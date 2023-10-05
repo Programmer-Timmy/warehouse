@@ -20,14 +20,14 @@ class racks
             $stmt->execute();
             header('location:racks_categories');
         } catch (Exception){
-            return '<script>alert("Verplaats eerst het product(en)")</script>';
+            return '<script>alert("Verplaats eerst de producten!")</script>';
         }
     }
 
     public static function getAll(){
         global $conn;
 
-        $stmt = $conn->prepare('SELECT * FROM racks');
+        $stmt = $conn->prepare('SELECT * FROM racks ORDER BY number');
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }

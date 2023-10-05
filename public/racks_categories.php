@@ -2,7 +2,10 @@
 $racks = racks::getAll();
 $categories = category::getAll();
 if(isset($_GET['rack'])){
-    racks::delete($_GET['rack']);
+    echo racks::delete($_GET['rack']);
+}
+if (isset($_GET['category'])) {
+    echo category::delete($_GET['category']);
 }
 
 if($_POST){

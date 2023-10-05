@@ -12,7 +12,16 @@ class category
     }
 
     public static function delete($id){
+        global $conn;
 
+        $stmt = $conn->prepare("DELETE FROM category where id = ?");
+        $stmt->bindValue(1, $id);
+        try {
+            $stmt->execute();
+            header('location:racks_categories');
+        } catch (Exception) {
+            return '<script>alert("Verander eerst de categorieën!")</script>';
+        }
     }
 
     public static function getAll(){

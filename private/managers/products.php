@@ -37,7 +37,7 @@ class products
     {
         global $conn;
         $stmt = $conn->prepare("UPDATE products SET name =? , ammount =? , category_id =? , racks_id=? WHERE id =?");
-        $stmt->bindValue(1, $name);
+        $stmt->bindValue(1, htmlspecialchars($name));
         $stmt->bindValue(2, $amount);
         $stmt->bindValue(3, $category_id);
         $stmt->bindValue(4, $racks_id);
@@ -60,7 +60,7 @@ class products
         global $conn;
 
         $stmt = $conn->prepare("INSERT INTO products (name, ammount, qr_url, json_img_url, category_id, racks_id) values (?,?,?,?,?,?)");
-        $stmt->bindValue(1, $name);
+        $stmt->bindValue(1, htmlspecialchars($name));
         $stmt->bindValue(2, $amount);
         $stmt->bindValue(3, uniqid());
         $stmt->bindValue(4, $locations);

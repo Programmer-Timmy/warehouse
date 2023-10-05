@@ -21,24 +21,28 @@ $categories = category::getAll();
 </head>
 <body>
 <?php require_once '../private/includes/nav.php'; ?>
-<div class="container" style="padding-bottom: 100px">
-    <div class="col-md-6 text-end pt-3" style="margin-left: auto">
-        <form method="get" id="category" style="width: 200px; margin-left: auto">
-            <select onchange="submit('category')" class="form-select" name="category"
-                    aria-label="Default select example">
-                <option value="">Kies categorie</option>
-                <?php
-                foreach ($categories as $category) {
-                    $selected = "";
-                    if ($category->id == $_GET['category']) {
-                        $selected = 'selected';
+<div class="container mt-2" style="padding-bottom: 100px">
+    <div class="d-flex align-items-center">
+        <h1>Producten</h1>
+        <div class="col-md-6 text-end" style="margin-left: auto">
+            <form method="get" id="category" style="width: 200px; margin-left: auto">
+                <select onchange="submit('category')" class="form-select" name="category"
+                        aria-label="Default select example">
+                    <option value="">Kies categorie</option>
+                    <?php
+                    foreach ($categories as $category) {
+                        $selected = "";
+                        if ($category->id == $_GET['category']) {
+                            $selected = 'selected';
+                        }
+                        echo "<option $selected value=\"$category->id\">$category->name</option>";
                     }
-                    echo "<option $selected value=\"$category->id\">$category->name</option>";
-                }
-                ?>
-            </select>
-        </form>
+                    ?>
+                </select>
+            </form>
+        </div>
     </div>
+
     <div class="row">
         <?php
         foreach ($products as $product) {

@@ -40,8 +40,8 @@ if ($_POST) {
                     <label for="category_id" class="form-label">Categorie</label>
                     <select class="form-select" name="category_id">
                         <?php
-                        $selected = '';
                         foreach ($categories as $category) {
+                            $selected = '';
                             if ($category->name == $product->category) {
                                 $selected = 'selected';
                             }
@@ -56,9 +56,8 @@ if ($_POST) {
                     <label for="racks_id" class="form-label">Stelling</label>
                     <select class="form-select" name="racks_id">
                         <?php
-
-
                         foreach ($racks as $rack) {
+                            $selected = '';
 
                             if ($rack->number == $product->rack) {
                                 $selected = 'selected';
@@ -68,10 +67,6 @@ if ($_POST) {
                         ?>
                     </select>
                 </div>
-                <!--                <div class="mb-3">-->
-                <!--                    <label for="formFile" class="form-label">afbeeldingen</label>-->
-                <!--                    <input type="file" class="form-control" name="images[]" accept="image/*" id="formFile" multiple>-->
-                <!--                </div>-->
                 <button type="submit" class="btn btn-primary">Bewerken</button>
             </form>
         </div>

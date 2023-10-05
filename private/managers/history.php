@@ -65,6 +65,13 @@ class history
         $stmt->bindValue(1, $id);
         $stmt->execute();
     }
+    public static function deleteByUser($id)
+    {
+        global $conn;
+        $stmt = $conn->prepare("DELETE FROM history WHERE users_id= ?");
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
+    }
 
 
 

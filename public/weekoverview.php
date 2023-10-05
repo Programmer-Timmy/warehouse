@@ -2,12 +2,7 @@
 if (!isset($_GET['week'])) {
     header('location:weekoverview?week=' . date('W'));
 }
-
-
 $histories = history::getAllByWeek($_GET['week']);
-
-
-//var_dump($histories)
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +33,7 @@ $histories = history::getAllByWeek($_GET['week']);
 <?php require_once "../private/includes/nav.php"; ?>
 
 <div class="container" style="margin-bottom: 100px">
-    <div class="d-flex flex-row  pt-3">
+    <div class="d-flex flex-row align-items-center pt-3">
         <div class="col-md-6">
             <h1 class="title">Week: <?php echo $_GET['week'] ?></h1>
         </div>

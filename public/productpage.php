@@ -49,7 +49,7 @@ $histories = history::getByProduct($_GET['id'])
 <?php require_once "../private/includes/nav.php"; ?>
 
 <div class="container mt-3" style="padding-bottom: 100px">
-    <div class="d-flex">
+    <div class="d-flex align-items-center">
         <div class="">
             <h1><?php echo $product->name; ?></h1>
         </div>

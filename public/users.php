@@ -1,5 +1,13 @@
 <?php
 $users = users::getAll();
+
+if($_POST){
+    users::add($_POST['email'], $_POST['password'], $_POST['firstname'], $_POST['lastname']);
+}
+
+if(isset($_GET['delete'])){
+    users::delete($_GET['delete']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +24,14 @@ $users = users::getAll();
 <body>
 <?php require_once "../private/includes/nav.php"; ?>
 <div class="container">
-    <h1 class="pt-3">Gebruikers</h1>
+    <div class="d-flex align-items-center">
+        <div>
+            <h1>gebruikers</h1>
+        </div>
+        <div class="ms-auto">
+            <a href="addUser" class="btn btn-primary">Toevoegen</a>
+        </div>
+    </div>
     <div class="table-responsive">
         <table class="table">
             <thead class="table-dark">
@@ -36,7 +51,7 @@ $users = users::getAll();
             <td>$user->firstname</td>
             <td>$user->lastname</td>
             <td>
-                <a href=\"#\" class=\"btn btn-primary\">...</a>
+                <a href=\"editUser?id=$user->id\" class=\"btn btn-primary\">...</a>
                 <a href=\"?delete=$user->id\" onclick='return confirm(\"weet je het zeker?\")' class=\"btn btn-danger\">X</a>
             </td>
             </tr>
